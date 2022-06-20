@@ -1,40 +1,49 @@
-import { Fragment } from 'react'
+import { Fragment, useContext, useEffect } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router-dom";
 
 import { useGetCategoriesQuery } from '../../../../redux/api/categories';
+import CategoryContext from '../../../../context/category'
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(' ')
 // }
 
-export default function MenuProducts({changeBody}) {
+export default function MenuProducts({products}) {
     const navigate = useNavigate();
 
     const listCategories = [];
 
-    const { data, isLoading, isSuccess, isFetching, error } = useGetCategoriesQuery();
-    
-    const handleSearchClick = ({category}) => {
-      navigate(`/category/${category}`)
-    };
+    // const handleSearchClick = ({category}) => {
+    //   navigate(`/category/${category}`)
+    // };
+    const { changeActualCategory, changeActualSubCategory } = useContext(CategoryContext);
 
-    data?.data?.forEach(({nombre, _id}, index) => {
+    products?.forEach(({nombre, _id}, index) => {
         
         listCategories.push(
          //   <Menu.Item key={index} onClick={handleSearchClick({category: nombre})} type="button">
-            <Menu.Item key={index} onClick={changeBody(nombre)} type="button">
+            // <Menu.Item key={index} onClick={changeBody(nombre)} type="button">
+            <Menu.Item 
+            key={index} 
+            type="button"
+            onClick={()=> {
+              changeActualCategory({category:"products"});
+              changeActualSubCategory({subCategory:nombre});
+            }}
+            >
                 <a className='hover:bg-gray-100 text-gray-900 block px-4 py-1 text-xs'>
                     {nombre}
                 </a>
             </Menu.Item>
-        )
+        );
     })
-
 
   return (
     <Menu as="div" className="relative z-16 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex justify-center w-28 text-xs p-1 font-medium font-ptsans hover:bg-rose-200 hover:shadow-lg sm:mt-2 sm:mb-2 sm:w-full">
+        <Menu.Button 
+        className="inline-flex justify-center w-28 text-xs p-1 font-medium font-ptsans hover:bg-rose-200 hover:shadow-lg sm:mt-2 sm:mb-2 sm:w-full"
+        >
         {/* focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 */}
           PRODUCTOS
         </Menu.Button>

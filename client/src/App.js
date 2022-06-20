@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import CategoriesProviders from './context/category/Providers';
 import RoutesApp from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <RoutesApp />
-    </div>
+    <CategoriesProviders className="App">
+        <RoutesApp />
+    </CategoriesProviders>
   );
 }
 

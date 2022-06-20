@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from '../views/Home';
-import { ProductsByCategory } from '../views/ProductsByCategory';
+import { ProductsByCategory } from '../views/Bodies/ProductsByCategory';
 
 export default function RoutesApp() {
     return (

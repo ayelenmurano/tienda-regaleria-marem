@@ -1,23 +1,23 @@
-import CategoryContext from ".";
+import { useState } from 'react';
 
-import { useGetCategoriesQuery } from '../../../../redux/api/categories';
+import CategoryContext from "./index";
 
 export default function CategoriesProviders ({ children }) {
-
-    const { data, isLoading, isSuccess, isFetching, error } = useGetCategoriesQuery();
     
     const [ actualCategory, setActualCategory ] = useState('home');
-    
-    const getCategories = () => {
-        return { data, isLoading, isSuccess, isFetching, error }
-    };
+    const [ actualSubCategory, setActualSubCategory ] = useState('');
+    const [ categories, setCategories ] = useState([]);
 
     const changeActualCategory = ({category}) => {
         setActualCategory(category)
     };
 
+    const changeActualSubCategory = ({subCategory}) => {
+        setActualSubCategory(subCategory)
+    };
+
     return (
-        <CategoryContext.Provider value={{actualCategory, getCategories, changeActualCategory}} >
+        <CategoryContext.Provider value={{actualCategory, changeActualCategory, categories, setCategories, actualSubCategory, changeActualSubCategory}} >
             {children}
         </CategoryContext.Provider >
     )

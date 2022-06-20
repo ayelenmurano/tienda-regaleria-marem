@@ -7,13 +7,13 @@ const headers = {
       'Access-Control-Allow-Headers':'application/json',
 };
 
-export const categoriesApi = createApi({
-    reducerPath: 'categoriesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/categories' }),
+export const productsApi = createApi({
+    reducerPath: 'productsApi',
+    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:4000` }),
     endpoints: (builder) => ({
-      getCategories: builder.query({
-        query: () => ({
-            url: `/`,
+      getProductsByCategories: builder.query({
+        query: (category) => ({
+            url: `/products?categoria=${category}`,
             method: 'GET',
         })
       })
@@ -56,10 +56,10 @@ export const categoriesApi = createApi({
 });
 
 export const { 
-  useGetCategoriesQuery, 
+  useGetProductsByCategoriesQuery, 
 //   useGetDetailByIdQuery,
 //   useGetRatingsByIdQuery,
 //   useGetTopCastByIdQuery,
 //   useGetOverviewDetailsByIdQuery,
 //   useGetFullCreditsByIdQuery,
-} = categoriesApi;
+} = productsApi;

@@ -1,35 +1,37 @@
+import { useContext } from 'react';
+
+import CategoryContext from '../../context/category';
 import { Header } from './Header';
-import { Body } from './Body';
+import { Home } from '../Bodies/Home';
 import { Footer } from './Footer';
-import { useState } from 'react';
-import { ProductsByCategory } from '../ProductsByCategory';
-import { Contact } from '../Contact';
+import { ProductsByCategory } from '../Bodies/ProductsByCategory';
+import { Contact } from '../Bodies/Contact';
+import { WhoWeAre } from '../Bodies/WhoWeAre';
 
-export default function Home () {
-    const [body, setBody] = useState("home");
 
-    const changeBody = ({newBody}) => {
-        setBody(newBody);
-        console.log(`Se ha seteado la variable a ${body}`)
-    };
+export default function PrincipalPage () {
+    const { actualCategory } = useContext(CategoryContext);
 
     const renderBody = () => {
-        switch (body) {
+        switch (actualCategory) {
             case "home":
-                return <Body />
+                return <Home />
             case "products":
                 return <ProductsByCategory />
+            case "whoweare":
+                return <WhoWeAre />
             case "contact":
                 return <Contact />
             default:
-                return <Body/>
+                return <Home/>
         }
     }
 
     return (
         <div>
-            <Header changeBody={changeBody}/>
-            {renderBody(body)}
+            {/* <Header changeBody={changeBody}/> */}
+            <Header />
+            {renderBody()}
             <Footer />
         </div>
         // <header className="App-header">

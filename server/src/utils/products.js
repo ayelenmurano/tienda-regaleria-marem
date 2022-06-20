@@ -24,35 +24,19 @@ class Products {
     async getFilter ({ nombre, talle, categoria }) {
         try {
             let whereClause = {};
-            if ( nombre != undefined && talle != undefined && categoria != undefined ) {
-                whereClause = {
-                    talle:{
-                        $regex: talle
-                    },
-                    nombre:{
+            if ( nombre !== undefined ) {
+                whereClause['nombre'] = {
                         $regex: nombre
-                    },
-                    categoria:{
-                        $regex: categoria
-                    }
                 };
-            } else if ( nombre != undefined ) {
-                whereClause = {
-                    nombre:{
-                        $regex: nombre
-                    },
-                    categoria:{
-                        $regex: categoria
-                    }
-                };
-            } else if ( talle != undefined ) {
-                whereClause = {
-                    talle:{
+            };
+            if ( talle !== undefined ) {
+                whereClause['talle'] = {
                         $regex: talle
-                    },
-                    categoria:{
+                };
+            };
+            if ( categoria !== undefined ) {
+                whereClause['categoria'] = {
                         $regex: categoria
-                    }
                 };
             };
             const products = await model.find( whereClause );

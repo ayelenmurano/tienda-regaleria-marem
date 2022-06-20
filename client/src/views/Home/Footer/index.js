@@ -1,6 +1,6 @@
 export function Footer () {
     return (
-        <div className="flex flex-row font-ptsans text-xs pt-10 pl-10 pr-10">
+        <div className="flex flex-row font-ptsans text-xs text-center pt-10 pl-10 pr-10">
             <div className="w-2/3 flex flex-col justify-center p-3 ">
                 <div>
                     <p>¡SEGUINOS EN REDES!</p>
