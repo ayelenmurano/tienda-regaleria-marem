@@ -4,8 +4,8 @@ export function WhoWeAre () {
     return (
         <div className="m-4 font-ptsans">
             <div className="bg-rose-200 pb-1 pt-1 mb-4 shadow-lg rounded-lg flex justify-center">QUIÉNES SOMOS</div>
-            <div className="h-full flex flex-row justify-items-center sm:flex-col">
-                <div className="w-2/3 flex items-center text-center font-ptsans m-1 text-xs sm:w-full">
+            <div className="h-full p-3 flex flex-row justify-items-center sm:flex-col">
+                <div className="w-2/3 p-10 flex items-center text-center font-ptsans m-1 text-xs sm:w-full">
                     <div className=""> 
                         Regaleria Artesanal Marem nace de nuestro amor por nuestros compañeros de vida peludos, nuestra creatividad y nuestro incansable deseo de emprender. 
                         <br></br><br></br>
